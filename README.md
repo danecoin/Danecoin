@@ -1,7 +1,7 @@
 Danecoin Core integration/staging tree
 =====================================
 
-https://danecoin.io
+https://danecoin.org
 
 What is Danecoin?
 ----------------
@@ -13,7 +13,7 @@ out collectively by the network. Danecoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Danecoin Core software, see [https://danecoin.io](https://danecoin.io).
+the Danecoin Core software, see [https://danecoin.org](https://danecoin.org).
 
 License
 -------
