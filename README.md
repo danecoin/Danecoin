@@ -3,6 +3,25 @@ Danecoin Core integration/staging tree
 
 https://danecoin.org
 
+Quick Specs
+-----------
+* Algo - SHA256
+* Supply - 14.5 million
+* Premine - 1.5 million
+* Block time - 10 minutes
+* Block reward - 50 DANE
+* RPC Port - 29723
+* P2P Port - 31794
+
+
+Important Links
+---------------
+* Official Website - https://danecoin.org
+* Explorer - https://explorer.danecoin.org/
+* Mining Pool - https://pool.danecoin.org/
+* Paper Wallet - https://wallet.danecoin.org/
+
+
 What is Danecoin?
 ----------------
 
