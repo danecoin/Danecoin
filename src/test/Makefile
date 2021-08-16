@@ -1,6 +1,6 @@
 all:
-	$(MAKE) -C .. babocoin_test
+	$(MAKE) -C .. danecoin_test
 clean:
-	$(MAKE) -C .. babocoin_test_clean
+	$(MAKE) -C .. danecoin_test_clean
 check:
-	$(MAKE) -C .. babocoin_test_check
+	$(MAKE) -C .. danecoin_test_check

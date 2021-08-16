@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
-# Copyright (c) 2016 The Bitcoin Core developers
+# Copyright (c) 2016-2019 The Bitcoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 ###   This script attempts to download the signature file SHA256SUMS.asc from
-###   danecoin.org and danecoin.org and compares them.
+###   danecoincore.org and danecoin.org and compares them.
 ###   It first checks if the signature passes, and then downloads the files specified in
 ###   the file, and checks if the hashes of these files match those that are specified
 ###   in the signature file.
@@ -13,7 +13,7 @@
 
 export LC_ALL=C
 function clean_up {
-   for file in $*
+   for file in "$@"
    do
       rm "$file" 2> /dev/null
    done
@@ -24,7 +24,7 @@ TMPFILE="hashes.tmp"
 
 SIGNATUREFILENAME="SHA256SUMS.asc"
 RCSUBDIR="test"
-HOST1="https://danecoin.org"
+HOST1="https://danecoincore.org"
 HOST2="https://danecoin.org"
 BASEDIR="/bin/"
 VERSIONPREFIX="danecoin-core-"
@@ -82,22 +82,20 @@ else
    exit 2
 fi
 
-#first we fetch the file containing the signature
-WGETOUT=$(wget -N "$HOST1$BASEDIR$SIGNATUREFILENAME" 2>&1)
-
-#and then see if wget completed successfully
-if [ $? -ne 0 ]; then
+if ! WGETOUT=$(wget -N "$HOST1$BASEDIR$SIGNATUREFILENAME" 2>&1); then
    echo "Error: couldn't fetch signature file. Have you specified the version number in the following format?"
+   # shellcheck disable=SC1087
    echo "[$VERSIONPREFIX]<version>-[$RCVERSIONSTRING[0-9]] (example: ${VERSIONPREFIX}0.10.4-${RCVERSIONSTRING}1)"
    echo "wget output:"
+   # shellcheck disable=SC2001
    echo "$WGETOUT"|sed 's/^/\t/g'
    exit 2
 fi
 
-WGETOUT=$(wget -N -O "$SIGNATUREFILENAME.2" "$HOST2$BASEDIR$SIGNATUREFILENAME" 2>&1)
-if [ $? -ne 0 ]; then
-   echo "danecoin.org failed to provide signature file, but danecoin.org did?"
+if ! WGETOUT=$(wget -N -O "$SIGNATUREFILENAME.2" "$HOST2$BASEDIR$SIGNATUREFILENAME" 2>&1); then
+   echo "danecoin.org failed to provide signature file, but danecoincore.org did?"
    echo "wget output:"
+   # shellcheck disable=SC2001
    echo "$WGETOUT"|sed 's/^/\t/g'
    clean_up $SIGNATUREFILENAME
    exit 3
@@ -105,7 +103,7 @@ fi
 
 SIGFILEDIFFS="$(diff $SIGNATUREFILENAME $SIGNATUREFILENAME.2)"
 if [ "$SIGFILEDIFFS" != "" ]; then
-   echo "danecoin.org and danecoin.org signature files were not equal?"
+   echo "danecoin.org and danecoincore.org signature files were not equal?"
    clean_up $SIGNATUREFILENAME $SIGNATUREFILENAME.2
    exit 4
 fi
@@ -128,6 +126,7 @@ if [ $RET -ne 0 ]; then
    fi
 
    echo "gpg output:"
+   # shellcheck disable=SC2001
    echo "$GPGOUT"|sed 's/^/\t/g'
    clean_up $SIGNATUREFILENAME $SIGNATUREFILENAME.2 $TMPFILE
    exit "$RET"

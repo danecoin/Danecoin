@@ -7,11 +7,10 @@ Quick Specs
 -----------
 * Algo - SHA256
 * Supply - 14.5 million
-* Premine - 1.5 million
-* Block time - 10 minutes
-* Block reward - 50 DANE
-* RPC Port - 29723
-* P2P Port - 31794
+* Block time - 1 minutes
+* Block reward - 5 DANE
+* RPC Port - 41233
+* P2P Port - 41234
 
 
 Important Links
@@ -32,7 +31,7 @@ out collectively by the network. Danecoin Core is the name of open source
 software which enables the use of this currency.
 
 For more information, as well as an immediately useable, binary version of
-the Danecoin Core software, see [https://danecoin.org](https://danecoin.org).
+the Danecoin Core software, see [https://danecoin.org](https://github.com/danecoin/Danecoin/releases/latest).
 
 License
 -------

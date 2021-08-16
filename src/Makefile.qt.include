@@ -3,101 +3,21 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 bin_PROGRAMS += qt/danecoin-qt
+
+if BUILD_DANECOIN_GUI
+  bin_PROGRAMS += danecoin-gui
+endif
+
 EXTRA_LIBRARIES += qt/libdanecoinqt.a
 
 # danecoin qt core #
-QT_TS = \
-  qt/locale/danecoin_af.ts \
-  qt/locale/danecoin_af_ZA.ts \
-  qt/locale/danecoin_ar.ts \
-  qt/locale/danecoin_be_BY.ts \
-  qt/locale/danecoin_bg_BG.ts \
-  qt/locale/danecoin_bg.ts \
-  qt/locale/danecoin_ca_ES.ts \
-  qt/locale/danecoin_ca.ts \
-  qt/locale/danecoin_ca@valencia.ts \
-  qt/locale/danecoin_cs.ts \
-  qt/locale/danecoin_cy.ts \
-  qt/locale/danecoin_da.ts \
-  qt/locale/danecoin_de.ts \
-  qt/locale/danecoin_el_GR.ts \
-  qt/locale/danecoin_el.ts \
-  qt/locale/danecoin_en_GB.ts \
-  qt/locale/danecoin_en.ts \
-  qt/locale/danecoin_eo.ts \
-  qt/locale/danecoin_es_AR.ts \
-  qt/locale/danecoin_es_CL.ts \
-  qt/locale/danecoin_es_CO.ts \
-  qt/locale/danecoin_es_DO.ts \
-  qt/locale/danecoin_es_ES.ts \
-  qt/locale/danecoin_es_MX.ts \
-  qt/locale/danecoin_es.ts \
-  qt/locale/danecoin_es_UY.ts \
-  qt/locale/danecoin_es_VE.ts \
-  qt/locale/danecoin_et_EE.ts \
-  qt/locale/danecoin_et.ts \
-  qt/locale/danecoin_eu_ES.ts \
-  qt/locale/danecoin_fa_IR.ts \
-  qt/locale/danecoin_fa.ts \
-  qt/locale/danecoin_fi.ts \
-  qt/locale/danecoin_fr_CA.ts \
-  qt/locale/danecoin_fr_FR.ts \
-  qt/locale/danecoin_fr.ts \
-  qt/locale/danecoin_gl.ts \
-  qt/locale/danecoin_he.ts \
-  qt/locale/danecoin_hi_IN.ts \
-  qt/locale/danecoin_hr.ts \
-  qt/locale/danecoin_hu.ts \
-  qt/locale/danecoin_id_ID.ts \
-  qt/locale/danecoin_it_IT.ts \
-  qt/locale/danecoin_it.ts \
-  qt/locale/danecoin_ja.ts \
-  qt/locale/danecoin_ka.ts \
-  qt/locale/danecoin_kk_KZ.ts \
-  qt/locale/danecoin_ko_KR.ts \
-  qt/locale/danecoin_ku_IQ.ts \
-  qt/locale/danecoin_ky.ts \
-  qt/locale/danecoin_la.ts \
-  qt/locale/danecoin_lt.ts \
-  qt/locale/danecoin_lv_LV.ts \
-  qt/locale/danecoin_mk_MK.ts \
-  qt/locale/danecoin_mn.ts \
-  qt/locale/danecoin_ms_MY.ts \
-  qt/locale/danecoin_nb.ts \
-  qt/locale/danecoin_ne.ts \
-  qt/locale/danecoin_nl.ts \
-  qt/locale/danecoin_pam.ts \
-  qt/locale/danecoin_pl.ts \
-  qt/locale/danecoin_pt_BR.ts \
-  qt/locale/danecoin_pt_PT.ts \
-  qt/locale/danecoin_ro_RO.ts \
-  qt/locale/danecoin_ro.ts \
-  qt/locale/danecoin_ru_RU.ts \
-  qt/locale/danecoin_ru.ts \
-  qt/locale/danecoin_sk.ts \
-  qt/locale/danecoin_sl_SI.ts \
-  qt/locale/danecoin_sq.ts \
-  qt/locale/danecoin_sr@latin.ts \
-  qt/locale/danecoin_sr.ts \
-  qt/locale/danecoin_sv.ts \
-  qt/locale/danecoin_ta.ts \
-  qt/locale/danecoin_th_TH.ts \
-  qt/locale/danecoin_tr_TR.ts \
-  qt/locale/danecoin_tr.ts \
-  qt/locale/danecoin_uk.ts \
-  qt/locale/danecoin_ur_PK.ts \
-  qt/locale/danecoin_uz@Cyrl.ts \
-  qt/locale/danecoin_vi.ts \
-  qt/locale/danecoin_vi_VN.ts \
-  qt/locale/danecoin_zh_CN.ts \
-  qt/locale/danecoin_zh_HK.ts \
-  qt/locale/danecoin_zh.ts \
-  qt/locale/danecoin_zh_TW.ts
+include Makefile.qt_locale.include
 
 QT_FORMS_UI = \
   qt/forms/addressbookpage.ui \
   qt/forms/askpassphrasedialog.ui \
   qt/forms/coincontroldialog.ui \
+  qt/forms/createwalletdialog.ui \
   qt/forms/editaddressdialog.ui \
   qt/forms/helpmessagedialog.ui \
   qt/forms/intro.ui \
@@ -105,6 +25,7 @@ QT_FORMS_UI = \
   qt/forms/openuridialog.ui \
   qt/forms/optionsdialog.ui \
   qt/forms/overviewpage.ui \
+  qt/forms/psbtoperationsdialog.ui \
   qt/forms/receivecoinsdialog.ui \
   qt/forms/receiverequestdialog.ui \
   qt/forms/debugwindow.ui \
@@ -117,12 +38,13 @@ QT_MOC_CPP = \
   qt/moc_addressbookpage.cpp \
   qt/moc_addresstablemodel.cpp \
   qt/moc_askpassphrasedialog.cpp \
+  qt/moc_createwalletdialog.cpp \
   qt/moc_bantablemodel.cpp \
   qt/moc_danecoinaddressvalidator.cpp \
   qt/moc_danecoinamountfield.cpp \
+  qt/moc_danecoin.cpp \
   qt/moc_danecoingui.cpp \
   qt/moc_danecoinunits.cpp \
-  qt/moc_callback.cpp \
   qt/moc_clientmodel.cpp \
   qt/moc_coincontroldialog.cpp \
   qt/moc_coincontroltreewidget.cpp \
@@ -140,6 +62,8 @@ QT_MOC_CPP = \
   qt/moc_overviewpage.cpp \
   qt/moc_peertablemodel.cpp \
   qt/moc_paymentserver.cpp \
+  qt/moc_psbtoperationsdialog.cpp \
+  qt/moc_qrimagewidget.cpp \
   qt/moc_qvalidatedlineedit.cpp \
   qt/moc_qvaluecombobox.cpp \
   qt/moc_receivecoinsdialog.cpp \
@@ -157,18 +81,18 @@ QT_MOC_CPP = \
   qt/moc_transactiontablemodel.cpp \
   qt/moc_transactionview.cpp \
   qt/moc_utilitydialog.cpp \
+  qt/moc_walletcontroller.cpp \
   qt/moc_walletframe.cpp \
   qt/moc_walletmodel.cpp \
   qt/moc_walletview.cpp
 
 DANECOIN_MM = \
   qt/macdockiconhandler.mm \
-  qt/macnotificationhandler.mm
+  qt/macnotificationhandler.mm \
+  qt/macos_appnap.mm
 
 QT_MOC = \
-  qt/danecoin.moc \
   qt/danecoinamountfield.moc \
-  qt/callback.moc \
   qt/intro.moc \
   qt/overviewpage.moc \
   qt/rpcconsole.moc
@@ -178,10 +102,6 @@ QT_QRC = qt/danecoin.qrc
 QT_QRC_LOCALE_CPP = qt/qrc_danecoin_locale.cpp
 QT_QRC_LOCALE = qt/danecoin_locale.qrc
 
-PROTOBUF_CC = qt/paymentrequest.pb.cc
-PROTOBUF_H = qt/paymentrequest.pb.h
-PROTOBUF_PROTO = qt/paymentrequest.proto
-
 DANECOIN_QT_H = \
   qt/addressbookpage.h \
   qt/addresstablemodel.h \
@@ -189,12 +109,13 @@ DANECOIN_QT_H = \
   qt/bantablemodel.h \
   qt/danecoinaddressvalidator.h \
   qt/danecoinamountfield.h \
+  qt/danecoin.h \
   qt/danecoingui.h \
   qt/danecoinunits.h \
-  qt/callback.h \
   qt/clientmodel.h \
   qt/coincontroldialog.h \
   qt/coincontroltreewidget.h \
+  qt/createwalletdialog.h \
   qt/csvmodelwriter.h \
   qt/editaddressdialog.h \
   qt/guiconstants.h \
@@ -202,6 +123,7 @@ DANECOIN_QT_H = \
   qt/intro.h \
   qt/macdockiconhandler.h \
   qt/macnotificationhandler.h \
+  qt/macos_appnap.h \
   qt/modaloverlay.h \
   qt/networkstyle.h \
   qt/notificator.h \
@@ -209,10 +131,11 @@ DANECOIN_QT_H = \
   qt/optionsdialog.h \
   qt/optionsmodel.h \
   qt/overviewpage.h \
-  qt/paymentrequestplus.h \
   qt/paymentserver.h \
   qt/peertablemodel.h \
   qt/platformstyle.h \
+  qt/psbtoperationsdialog.h \
+  qt/qrimagewidget.h \
   qt/qvalidatedlineedit.h \
   qt/qvaluecombobox.h \
   qt/receivecoinsdialog.h \
@@ -221,6 +144,7 @@ DANECOIN_QT_H = \
   qt/rpcconsole.h \
   qt/sendcoinsdialog.h \
   qt/sendcoinsentry.h \
+  qt/sendcoinsrecipient.h \
   qt/signverifymessagedialog.h \
   qt/splashscreen.h \
   qt/trafficgraphwidget.h \
@@ -231,6 +155,7 @@ DANECOIN_QT_H = \
   qt/transactiontablemodel.h \
   qt/transactionview.h \
   qt/utilitydialog.h \
+  qt/walletcontroller.h \
   qt/walletframe.h \
   qt/walletmodel.h \
   qt/walletmodeltransaction.h \
@@ -240,8 +165,6 @@ DANECOIN_QT_H = \
 RES_ICONS = \
   qt/res/icons/add.png \
   qt/res/icons/address-book.png \
-  qt/res/icons/about.png \
-  qt/res/icons/about_qt.png \
   qt/res/icons/danecoin.ico \
   qt/res/icons/danecoin_testnet.ico \
   qt/res/icons/danecoin.png \
@@ -251,13 +174,11 @@ RES_ICONS = \
   qt/res/icons/clock3.png \
   qt/res/icons/clock4.png \
   qt/res/icons/clock5.png \
-  qt/res/icons/configure.png \
   qt/res/icons/connect0.png \
   qt/res/icons/connect1.png \
   qt/res/icons/connect2.png \
   qt/res/icons/connect3.png \
   qt/res/icons/connect4.png \
-  qt/res/icons/debugwindow.png \
   qt/res/icons/edit.png \
   qt/res/icons/editcopy.png \
   qt/res/icons/editpaste.png \
@@ -265,21 +186,16 @@ RES_ICONS = \
   qt/res/icons/eye.png \
   qt/res/icons/eye_minus.png \
   qt/res/icons/eye_plus.png \
-  qt/res/icons/filesave.png \
   qt/res/icons/fontbigger.png \
   qt/res/icons/fontsmaller.png \
   qt/res/icons/hd_disabled.png \
   qt/res/icons/hd_enabled.png \
   qt/res/icons/history.png \
-  qt/res/icons/info.png \
-  qt/res/icons/key.png \
   qt/res/icons/lock_closed.png \
   qt/res/icons/lock_open.png \
   qt/res/icons/network_disabled.png \
-  qt/res/icons/open.png \
   qt/res/icons/overview.png \
   qt/res/icons/proxy.png \
-  qt/res/icons/quit.png \
   qt/res/icons/receive.png \
   qt/res/icons/remove.png \
   qt/res/icons/send.png \
@@ -292,11 +208,11 @@ RES_ICONS = \
   qt/res/icons/tx_input.png \
   qt/res/icons/tx_output.png \
   qt/res/icons/tx_mined.png \
-  qt/res/icons/warning.png \
-  qt/res/icons/verify.png
+  qt/res/icons/warning.png
 
 DANECOIN_QT_BASE_CPP = \
   qt/bantablemodel.cpp \
+  qt/danecoin.cpp \
   qt/danecoinaddressvalidator.cpp \
   qt/danecoinamountfield.cpp \
   qt/danecoingui.cpp \
@@ -327,11 +243,13 @@ DANECOIN_QT_WALLET_CPP = \
   qt/askpassphrasedialog.cpp \
   qt/coincontroldialog.cpp \
   qt/coincontroltreewidget.cpp \
+  qt/createwalletdialog.cpp \
   qt/editaddressdialog.cpp \
   qt/openuridialog.cpp \
   qt/overviewpage.cpp \
-  qt/paymentrequestplus.cpp \
   qt/paymentserver.cpp \
+  qt/psbtoperationsdialog.cpp \
+  qt/qrimagewidget.cpp \
   qt/receivecoinsdialog.cpp \
   qt/receiverequestdialog.cpp \
   qt/recentrequeststablemodel.cpp \
@@ -344,6 +262,7 @@ DANECOIN_QT_WALLET_CPP = \
   qt/transactionrecord.cpp \
   qt/transactiontablemodel.cpp \
   qt/transactionview.cpp \
+  qt/walletcontroller.cpp \
   qt/walletframe.cpp \
   qt/walletmodel.cpp \
   qt/walletmodeltransaction.cpp \
@@ -355,26 +274,26 @@ DANECOIN_QT_CPP += $(DANECOIN_QT_WINDOWS_CPP)
 endif
 if ENABLE_WALLET
 DANECOIN_QT_CPP += $(DANECOIN_QT_WALLET_CPP)
-endif
+endif # ENABLE_WALLET
 
-RES_IMAGES =
-
-RES_MOVIES = $(wildcard $(srcdir)/qt/res/movies/spinner-*.png)
+RES_ANIMATION = $(wildcard $(srcdir)/qt/res/animation/spinner-*.png)
 
 DANECOIN_RC = qt/res/danecoin-qt-res.rc
 
 DANECOIN_QT_INCLUDES = -DQT_NO_KEYWORDS
 
 qt_libdanecoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(DANECOIN_INCLUDES) $(DANECOIN_QT_INCLUDES) \
-  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(QR_CFLAGS)
 qt_libdanecoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 qt_libdanecoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
 
 qt_libdanecoinqt_a_SOURCES = $(DANECOIN_QT_CPP) $(DANECOIN_QT_H) $(QT_FORMS_UI) \
-  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES)
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(RES_ICONS) $(RES_ANIMATION)
+if TARGET_DARWIN
+  qt_libdanecoinqt_a_SOURCES += $(DANECOIN_MM)
+endif
 
-nodist_qt_libdanecoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
-  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+nodist_qt_libdanecoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
 
 # forms/foo.h -> forms/ui_foo.h
 QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
@@ -382,46 +301,52 @@ QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:
 # Most files will depend on the forms and moc files as includes. Generate them
 # before anything else.
 $(QT_MOC): $(QT_FORMS_H)
-$(qt_libdanecoinqt_a_OBJECTS) $(qt_danecoin_qt_OBJECTS) : | $(QT_MOC)
+$(qt_libdanecoinqt_a_OBJECTS) $(qt_danecoin_qt_OBJECTS) $(danecoin_gui_OBJECTS) : | $(QT_MOC)
 
-#Generating these with a half-written protobuf header leads to wacky results.
-#This makes sure it's done.
-$(QT_MOC): $(PROTOBUF_H)
-$(QT_MOC_CPP): $(PROTOBUF_H)
+# danecoin-qt and danecoin-gui binaries #
+danecoin_qt_cppflags = $(AM_CPPFLAGS) $(DANECOIN_INCLUDES) $(DANECOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QR_CFLAGS)
+danecoin_qt_cxxflags = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
 
-# danecoin-qt binary #
-qt_danecoin_qt_CPPFLAGS = $(AM_CPPFLAGS) $(DANECOIN_INCLUDES) $(DANECOIN_QT_INCLUDES) \
-  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS)
-qt_danecoin_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
-
-qt_danecoin_qt_SOURCES = qt/danecoin.cpp
-if TARGET_DARWIN
-  qt_danecoin_qt_SOURCES += $(DANECOIN_MM)
-endif
+danecoin_qt_sources = qt/main.cpp
 if TARGET_WINDOWS
-  qt_danecoin_qt_SOURCES += $(DANECOIN_RC)
+  danecoin_qt_sources += $(DANECOIN_RC)
 endif
-qt_danecoin_qt_LDADD = qt/libdanecoinqt.a $(LIBDANECOIN_SERVER)
+danecoin_qt_ldadd = qt/libdanecoinqt.a $(LIBDANECOIN_SERVER)
 if ENABLE_WALLET
-qt_danecoin_qt_LDADD += $(LIBDANECOIN_UTIL) $(LIBDANECOIN_WALLET)
+danecoin_qt_ldadd += $(LIBDANECOIN_UTIL) $(LIBDANECOIN_WALLET)
 endif
 if ENABLE_ZMQ
-qt_danecoin_qt_LDADD += $(LIBDANECOIN_ZMQ) $(ZMQ_LIBS)
+danecoin_qt_ldadd += $(LIBDANECOIN_ZMQ) $(ZMQ_LIBS)
 endif
-qt_danecoin_qt_LDADD += $(LIBDANECOIN_CLI) $(LIBDANECOIN_COMMON) $(LIBDANECOIN_UTIL) $(LIBDANECOIN_CONSENSUS) $(LIBDANECOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
-  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
-  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-qt_danecoin_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
-qt_danecoin_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+danecoin_qt_ldadd += $(LIBDANECOIN_CLI) $(LIBDANECOIN_COMMON) $(LIBDANECOIN_UTIL) $(LIBDANECOIN_CONSENSUS) $(LIBDANECOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(SQLITE_LIBS)
+danecoin_qt_ldflags = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+danecoin_qt_libtoolflags = $(AM_LIBTOOLFLAGS) --tag CXX
+
+qt_danecoin_qt_CPPFLAGS = $(danecoin_qt_cppflags)
+qt_danecoin_qt_CXXFLAGS = $(danecoin_qt_cxxflags)
+qt_danecoin_qt_SOURCES = $(danecoin_qt_sources)
+qt_danecoin_qt_LDADD = $(danecoin_qt_ldadd)
+qt_danecoin_qt_LDFLAGS = $(danecoin_qt_ldflags)
+qt_danecoin_qt_LIBTOOLFLAGS = $(danecoin_qt_libtoolflags)
+
+danecoin_gui_CPPFLAGS = $(danecoin_qt_cppflags)
+danecoin_gui_CXXFLAGS = $(danecoin_qt_cxxflags)
+danecoin_gui_SOURCES = $(danecoin_qt_sources)
+danecoin_gui_LDADD = $(danecoin_qt_ldadd)
+danecoin_gui_LDFLAGS = $(danecoin_qt_ldflags)
+danecoin_gui_LIBTOOLFLAGS = $(danecoin_qt_libtoolflags)
 
 #locale/foo.ts -> locale/foo.qm
 QT_QM=$(QT_TS:.ts=.qm)
 
 SECONDARY: $(QT_QM)
 
-$(srcdir)/qt/danecoinstrings.cpp: $(libdanecoin_server_a_SOURCES) $(libdanecoin_wallet_a_SOURCES) $(libdanecoin_common_a_SOURCES) $(libdanecoin_zmq_a_SOURCES) $(libdanecoin_consensus_a_SOURCES) $(libdanecoin_util_a_SOURCES)
+$(srcdir)/qt/danecoinstrings.cpp: FORCE
 	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
-	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" COPYRIGHT_HOLDERS_SUBSTITUTION="$(COPYRIGHT_HOLDERS_SUBSTITUTION)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) COPYRIGHT_HOLDERS="$(COPYRIGHT_HOLDERS)" $(PYTHON) ../share/qt/extract_strings_qt.py $(libdanecoin_server_a_SOURCES) $(libdanecoin_wallet_a_SOURCES) $(libdanecoin_common_a_SOURCES) $(libdanecoin_zmq_a_SOURCES) $(libdanecoin_consensus_a_SOURCES) $(libdanecoin_util_a_SOURCES)
 
 translate: $(srcdir)/qt/danecoinstrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(DANECOIN_QT_BASE_CPP) qt/danecoin.cpp $(DANECOIN_QT_WINDOWS_CPP) $(DANECOIN_QT_WALLET_CPP) $(DANECOIN_QT_H) $(DANECOIN_MM)
 	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
@@ -434,7 +359,7 @@ $(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 	@rm $(@D)/temp_$(<F)
 
-$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_MOVIES) $(PROTOBUF_H)
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_ANIMATION)
 	@test -f $(RCC)
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name danecoin $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
@@ -454,11 +379,11 @@ ui_%.h: %.ui
 	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
 
 %.moc: %.cpp
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES_UNSUPPRESSED) $(MOC_DEFS) $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 moc_%.cpp: %.h
-	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES_UNSUPPRESSED) $(MOC_DEFS) $< | \
 	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
 
 %.qm: %.ts

@@ -1,9 +1,9 @@
 .PHONY: FORCE
 all: FORCE
-	$(MAKE) -C .. babocoin_qt test_babocoin_qt
+	$(MAKE) -C .. danecoin_qt test_danecoin_qt
 clean: FORCE
-	$(MAKE) -C .. babocoin_qt_clean test_babocoin_qt_clean
+	$(MAKE) -C .. danecoin_qt_clean test_danecoin_qt_clean
 check: FORCE
-	$(MAKE) -C .. test_babocoin_qt_check
-babocoin-qt babocoin-qt.exe: FORCE
-	 $(MAKE) -C .. babocoin_qt
+	$(MAKE) -C .. test_danecoin_qt_check
+danecoin-qt danecoin-qt.exe: FORCE
+	 $(MAKE) -C .. danecoin_qt

@@ -7,11 +7,11 @@ The purpose of this library is to make the verification functionality that is cr
 
 ### API
 
-The interface is defined in the C header `danecoinconsensus.h` located in  `src/script/danecoinconsensus.h`.
+The interface is defined in the C header `danecoinconsensus.h` located in `src/script/danecoinconsensus.h`.
 
 #### Version
 
-`danecoinconsensus_version` returns an `unsigned int` with the API version *(currently at an experimental `0`)*.
+`danecoinconsensus_version` returns an `unsigned int` with the API version *(currently `1`)*.
 
 #### Script Validation
 

@@ -17,7 +17,7 @@ class DanecoinAddressEntryValidator : public QValidator
 public:
     explicit DanecoinAddressEntryValidator(QObject *parent);
 
-    State validate(QString &input, int &pos) const;
+    State validate(QString &input, int &pos) const override;
 };
 
 /** Danecoin address widget validator, checks for a valid danecoin address.
@@ -29,7 +29,7 @@ class DanecoinAddressCheckValidator : public QValidator
 public:
     explicit DanecoinAddressCheckValidator(QObject *parent);
 
-    State validate(QString &input, int &pos) const;
+    State validate(QString &input, int &pos) const override;
 };
 
 #endif // DANECOIN_QT_DANECOINADDRESSVALIDATOR_H

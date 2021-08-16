@@ -8,6 +8,16 @@ if ENABLE_QT
   dist_man1_MANS+=danecoin-qt.1
 endif
 
-if BUILD_DANECOIN_UTILS
-  dist_man1_MANS+=danecoin-cli.1 danecoin-tx.1
+if BUILD_DANECOIN_CLI
+  dist_man1_MANS+=danecoin-cli.1
+endif
+
+if BUILD_DANECOIN_TX
+  dist_man1_MANS+=danecoin-tx.1
+endif
+
+if ENABLE_WALLET
+if BUILD_DANECOIN_WALLET
+  dist_man1_MANS+=danecoin-wallet.1
+endif
 endif
